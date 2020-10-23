@@ -1,0 +1,5 @@
+//= preact_component('Button', { type: 'submit', label: 'Get started!'})
+//= render 'ads/head_ad'
+.card-deck
+  = render partial: 'articles/inc/small_show', collection: @articles, as: :article
+= will_paginate @articles, list_classes: %w(pagination justify-content-center)

@@ -1,0 +1,52 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  input#nav-toggle[type="checkbox" hidden]
+
+  .nav_menu.bg-dark
+    h2
+      a[href="https://job-seek.ru"]
+        |JOB-SEEK.RU
+    label.nav-toggle[for="nav-toggle" onclick]
+    ul
+      - if user_signed_in?
+        li
+          = link_to "Новая статья", new_article_path
+        li
+          = link_to "Выйти", destroy_user_session_path, :method => :delete
+      - unless user_signed_in?
+        li
+          = link_to "Войти", new_user_session_path
+    ul[style="position:relative; bottom:-40px; width: 100%"]
+      li
+        a[href="#"]
+          |Terms and Conditions
+      li
+        a[href="#"]
+          |Privacy policy
+      li
+        a[href="#"]
+          |Contact us
+      li
+        a[href="#"]
+          |About us
+  .d-flex.w-100.d-lg-none
+    label.navbar-toggler[for="nav-toggle" onclick style="border: 1px solid white;" ]
+      span.navbar-toggler-icon
+    .w-100.text-center
+      = link_to 'JOB-SEEK.RU', root_path, class: 'navbar-brand'
+  .w-100.d-none.d-lg-flex
+    .container
+      .text-center
+        = link_to 'JOB-SEEK.RU', root_path, class: 'navbar-brand'
+      ul.navbar-nav
+        - if user_signed_in?
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle[href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+              =current_user.fullname
+            .dropdown-menu[aria-labelledby="navbarDropdown"]
+              = link_to "Новая статья", new_article_path, class: "dropdown-item"
+              .dropdown-divider
+              = link_to "Выйти", destroy_user_session_path, :method => :delete, class: "dropdown-item"
+        - unless user_signed_in?
+          li.nav-item
+            = link_to "Войти", new_user_session_path, class: "nav-link"
+

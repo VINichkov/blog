@@ -1,0 +1,5 @@
+- content_for :title, @article.title
+h1.text-center
+  = @article.title
+p
+  = render inline: @article.body

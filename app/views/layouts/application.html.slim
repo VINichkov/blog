@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title
+      = "JOB-SEEK.RU #{content_for :title}"
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
+    = stylesheet_link_tag('application', media: 'all', 'data-turbolinks-track': 'reload')
+    = javascript_pack_tag('application', 'data-turbolinks-track': 'reload')
+
+  body
+    .head_menu
+      =render 'menu/menu'
+      .mb-3
+    .wrapper
+      .container
+        -if notice
+          .alert.alert-success[role="alert"]
+            = notice
+        -if alert
+          .alert.alert-danger[role="alert"]
+            = alert
+        = yield
+    .footer
+      =render 'footer/footer'
+

@@ -1,0 +1,20 @@
+= form_with(model: article, local: true) do |form|
+  - if article.errors.any?
+    h2
+      = pluralize(article.errors.count, "error")
+      |  prohibited this article from being saved:
+    ul
+      - article.errors.full_messages.each do |message|
+        li
+          = message
+  .form-group
+    = form.label 'Заголовок', for: :article_title
+    = form.text_field :title, class: 'form-control'
+  .form-group
+    = form.label 'Картинка на главную страницу', for: :article_main_img
+    = form.file_field :main_img, class: 'form-control'
+  .form-group
+    = form.label 'Текст статьи', for: :article_body
+    = form.rich_text_area :body
+  .form-group
+    = form.submit
